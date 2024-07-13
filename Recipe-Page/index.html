@@ -1,11 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Page</title>
+    <link rel='stylesheet' href='./styles.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Playwrite+CU:wght@100..400&display=swap" rel="stylesheet">
+    <script src = "script.js"></script>
 </head>
-<body>
-    
+
+<body class = 'Main'>
+
+    <section class = 'Top'>
+        <span class = 'Left'>
+            <div class = 'Title'>
+                <h1> Meet Brazil's</h1>
+                <h2>culinary experience</h2>
+            </div>
+        </span>
+        <span class = 'Right'>
+            <div class = 'Image-Container'>
+                <img id = 'louro' src = "./images/louro.png">
+                <span class = 'Title Card'>Louro José</span>
+            </div>
+        </span>
+    </section>
+
+    <section class = 'Bottom'>
+        <span class = 'Recipe-Cards'>
+            <div class = 'Card' id = 'feijoada'>
+                <img id = 'food-image' src = "./images/feijoada.jpg"> 
+                <div class = 'Hover-Cover'>
+                    <p>Feijoada</p>
+                    <p> Clique para ver mais</p>
+                </div>
+            </div>
+            <div class = 'Card' id = 'pao-de-queijo'>
+                <img id = 'food-image' src = "./images/pao-de-queijo.jpg"> 
+                <div class = 'Hover-Cover'>
+                    <p>Pão de queijo</p>
+                    <p> Clique para ver mais</p>
+                </div>
+            </div>
+            <div class = 'Card' id = 'brigadeiro'>
+                <img id = 'food-image' src = "./images/brigadeiro.jpg"> 
+                <div class = 'Hover-Cover'>
+                    <p>Brigadeiro</p>
+                    <p> Clique para ver mais</p>
+                </div>
+            </div>
+            <div class = 'Card' id = 'tapioca'>
+                <img id = 'food-image' src = "./images/tapioc.jpg"> 
+                <div class = 'Hover-Cover'>
+                    <p>Tapioca</p>
+                    <p> Clique para ver mais</p>
+                </div>
+            </div>
+            <div class = 'Card' id = 'acaraje'>
+                <img id = 'food-image' src = "./images/acaraje.jpg"> 
+                <div class = 'Hover-Cover'>
+                    <p>Acarajé</p>
+                    <p> Clique para ver mais</p>
+                </div>
+            </div>
+        </span>
+        <span class = 'Recipe-Section'>
+            <section>
+                <div class = 'Image-Card'>
+                </div>
+                <div class = 'Content-Card'>
+                    <div class = 'Title-Card'></div>
+                    <div class = 'Description-Card'></div>
+                    <div class = 'Ingredients-Card'></div>
+                    <div class = 'How-To-Card'></div>
+                </div>
+            </section>  
+        </span>
+
+    </section>
 </body>
+
 </html>
