@@ -95,6 +95,7 @@ function InteractRecipeCard(cards) {
         
         recipes.forEach((recipe) => {
             if (recipe.id == card.id) {
+
                 
                 if (!(section.className.includes('Active'))) { section.classList.add('Active') }
                 
@@ -103,7 +104,8 @@ function InteractRecipeCard(cards) {
                 generator.description_name(recipe.description, description)
                 generator.ingredient_list(recipe.ingredients, ingredients)
                 generator.step_list(recipe.how_to, howTo)
-
+                
+                window.scrollTo(0, 10000)
             }
         })
 

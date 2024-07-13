@@ -7,49 +7,46 @@
 /* === ANIMATIONS === */
 
 @keyframes opacity-change {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 @keyframes opacity-change-reverse {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
+    0% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
-@keyframes zoom {
-    0% {
-        transform: scaleX(90%);
-    }
-
-    100% {
-        transform: scaleX(100%);
-    }
+@keyframes zoom-title {
+    0% { transform: scaleX(90%); }
+    100% { transform: scaleX(100%); }
 }
 
 
 @keyframes change-color-one {
-    0% {
-        background: white;
-    }
-
-    100% {
-        background: var(--light-blue);
-    }
+    0% { background: white; }
+    100% { background: var(--light-blue); }
 }
 
 @keyframes fade-in {
     from { scale: 0.5; opacity: 0; }
     to { scale: 1; opacity: 1}
+}
+
+@keyframes change-height {
+    from { height: 0%; opacity: 0}
+    to { height: 80vh; opacity: 1}
+}
+
+@keyframes zooming-in {
+    0% { scale: 1}
+    50% { scale: 1.15}
+    100% { scale: 1 }
+}
+
+@keyframes zooming-out {
+    100% { scale: 1.18 }
+    50% { scale: 1.15}
+    0% { scale: 1}
 }
 
 :root {
@@ -105,7 +102,7 @@
 
 .Left .Title h1 {
     font-size: 100px;
-    animation: zoom 2.5s;
+    animation: zoom-title 2.5s;
     font-family: "Arsenal SC", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -116,7 +113,7 @@
     font-size: 50px;
     right: 0px;
     bottom: -20px;
-    animation: zoom 2.5s;
+    animation: zoom-title 2.5s;
     font-family: "Playwrite CU", cursive;
     font-optical-sizing: auto;
     font-style: normal;
@@ -142,15 +139,24 @@
 .Right > .Image-Container > #louro {
     object-fit: contain;
     width: 100%;
+    animation: zooming-in 10s infinite;
 }
 
+.Right > #flag {
+    position: absolute;
+    bottom: 10%;
+    right: 1%;
+    width: 300px;
+    animation: fade-in 1.5s ease-in;
+    animation: zooming-in 10s infinite;
+}
 
 /* === BOTTOM === */
 
 .Bottom {
     display: flex;
     flex-direction: column;
-    background: var(--brazillian-blue);
+    height: auto;
     color: white;
 }
 
@@ -216,26 +222,39 @@
 
 .Bottom .Recipe-Section {
     opacity: 0;
+    height: 0px;
 }
+
+.Bottom .Recipe-Section > section > *{
+    display: none;
+}
+
 
 .Bottom .Recipe-Section.Active {
     padding: 50px;
-    height: 80vh;
-    opacity: 1;
+    animation: change-height 1s forwards;
 }
 
-.Bottom .Recipe-Section > section {
+
+.Bottom .Recipe-Section.Active > section > *{
+    display: block;
+}
+
+
+.Bottom .Recipe-Section.Active > section {
     display: flex;
     height: 100%;
-}
-
-.Bottom .Recipe-Section > section > .Image-Card {
-    width: 60%;
-    height: 100%;
+    border: 2px solid var(--brazillian-blue);
+    border-radius: 25px;
     overflow: hidden;
 }
 
-.Bottom .Recipe-Section > section > .Image-Card > img {
+.Bottom .Recipe-Section.Active > section > .Image-Card {
+    width: 30%;
+    overflow: hidden;
+}
+
+.Bottom .Recipe-Section.Active > section > .Image-Card > img {
     width: 100%;
     height: 100%;
 }
