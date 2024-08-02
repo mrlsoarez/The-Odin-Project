@@ -9,14 +9,21 @@ function DOMInteraction() {
 
     Buttons.forEach((button) => {
         button.addEventListener('click', () => {
-
+            /*
             if (is_result_there) { 
                 deleteAll(Visor)
                 is_result_there = false
             }
+            */           
 
             if (button.className.includes('Delete')) {
                 deleteAll(Visor)
+                return
+            }
+
+            if (button.className == 'Operator' && Visor.innerText == "") {
+                deleteAll(Visor)
+                return
             }
 
             if (button.className.includes('Equal')) {
@@ -25,7 +32,7 @@ function DOMInteraction() {
             }
 
             displayVisor(button, Visor)
-         
+
         })
     })
 
