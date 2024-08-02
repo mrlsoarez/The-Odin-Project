@@ -1,4 +1,3 @@
-// Mostrar elementos em tela corretamente
 
 var is_result_there = false
 
@@ -8,13 +7,7 @@ function DOMInteraction() {
     const Visor = document.querySelector('.Visor')
 
     Buttons.forEach((button) => {
-        button.addEventListener('click', () => {
-            /*
-            if (is_result_there) { 
-                deleteAll(Visor)
-                is_result_there = false
-            }
-            */           
+        button.addEventListener('click', () => {         
 
             if (button.className.includes('Delete')) {
                 deleteAll(Visor)
@@ -43,6 +36,7 @@ function deleteAll(DIV) {
         DIV.removeChild(DIV.firstChild)
     }
 }
+
 function displayVisor(btn, Visor) {
     Visor.textContent += btn.value
 }
@@ -63,10 +57,5 @@ function evaluateExpression(Visor) {
     is_result_there = true
 
 }
-/*
-function Calculator() {
-
-}
-*/
 
 document.addEventListener('DOMContentLoaded', DOMInteraction)
