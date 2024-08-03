@@ -1,0 +1,186 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+.My-Content {
+    height: auto;
+    width: auto;
+}
+
+h1, h2, h3 {
+    font-weight: lighter;
+}
+
+header, ul {
+    display: flex;
+    justify-content: end;
+    padding: rem;
+    background: black;
+    color: white;
+}
+
+ul {
+    list-style: none;
+    gap: 5rem;
+}
+
+ul > li:hover {
+    color: grey;
+    cursor: pointer;
+    text-decoration:underline;
+}
+
+.Section {
+    padding: 2rem;
+}
+
+/* ===== SECTION ONE ===== */
+
+.One {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background: black;
+    color: white;
+}
+
+.One > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    height: 100%;
+}
+
+.One > div .Image > #jacques {
+    width: 50rem;
+}
+
+/* ====== SECTION TWO ====== */
+
+.Two {
+    background: linear-gradient(black, white);
+    color: white;
+}
+
+.Two > h1 {
+    font-size: 30px;
+}
+
+.Two .Movies {
+    display: flex;
+    overflow: hidden;
+    padding: 2rem;
+}
+
+.Two .Movies > button {
+    width: 5rem;
+    height: 5rem;
+    align-self: center;
+    border: none;
+}
+
+button:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+}
+
+.Two .Movie {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+}
+
+.Two .Movie > * {
+    display: flex;
+    height: 100vh;
+}
+
+.Two .Movie > .Image-Container img {
+    width: 30rem;
+    border-radius: 25px;
+    box-shadow: 0px 5px 20px black;
+}
+
+.Two .Movie > .Info-Container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 2.5rem;
+}
+
+.Two .Movie > .Info-Container .Images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.Two .Movie > .Info-Container .Images > #GIF-container {
+    width: 35rem;
+    height: 25rem;
+}
+
+.Two .Movie > .Info-Container .Images > #GIF-container > #gif {
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+}
+
+.Two .Movie > .Info-Container .Images > #rotten {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 25px;
+}
+
+/* ===== SECTION THREE ===== */
+
+.Three {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.Three > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    height: 100%;
+}
+
+.Three > div > #Image-Hover {
+    width: 90rem;
+    height: 25rem;
+    background: red;
+    position: relative;
+}
+
+.Three > div > #Image-Hover img {
+    width: 100%;
+    height: 100%;
+}
+
+.Three > div #Image-Hover #hover1 {
+    position: absolute;
+    left: 0px;
+}
+
+.Three > div > #Image-Hover .Active {
+    opacity: 1;
+}
+
+.Three > div > #Image-Hover .Hover {
+    animation: small-transition 3s forwards;
+    cursor: pointer;
+}
+
+@keyframes small-transition {
+    from {opacity: 1;}
+    to { opacity: 0;}
+}
