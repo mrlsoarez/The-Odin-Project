@@ -1,0 +1,106 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.Container {
+    display: flex;
+    height: 100vh;
+    background: lightblue;
+}
+
+.Container .Left,
+.Container .Left .Title,
+.Container .Right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0.5;
+}
+
+.Container .Left {
+    flex-direction: column;
+    background: rgb(238, 238, 238);
+}
+
+.Container .Left .Title {
+    flex-direction: column;
+}
+
+.Container .Left form {
+    flex-direction: column;
+    width: 80%;
+    height: 60%;
+    padding: 5%;
+    background: white;
+    border-radius: 25px;
+}
+
+
+.Container .Left form > section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bolder;
+    position: relative;
+    padding: 4%;
+}
+
+.Container .Left form > section:nth-child(4) > i,
+.Container .Left form > section:nth-child(5) > i {
+    position: absolute;
+    right: 5%;
+    font-size: 1.2rem;
+}
+
+.Container .Left form > section > input {
+    width: 100%;
+    height: 40px;
+    outline: none;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    border-bottom: 1px solid black;
+}
+
+.Container .Left form > section > button {
+    width: 50%;
+    height: 40px;
+    font-weight: bolder;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    background: rgb(116, 102, 219);
+}
+
+
+.Container .Right {
+    justify-content: center;
+    background: linear-gradient(140deg, rgb(232, 232, 232), rgb(116, 102, 219));
+}
+
+.Container .Right img {
+    width: 80%;
+    padding: 50px;
+    border-radius: 25px;
+    background: rgb(255, 255, 255);
+}
+
+
+/* ==== CSS EVENTS ==== */
+
+.Container .Left form > section > button:hover {
+    background: rgb(79, 66, 175);
+    cursor: pointer;
+}
+
+.Container .Left form > section:nth-child(4) > i:hover,
+.Container .Left form > section:nth-child(5) > i:hover {
+    cursor: pointer;
+}
+
+.Container .Left form > section > input:invalid {
+    border-bottom: '1px solid red';
+}
