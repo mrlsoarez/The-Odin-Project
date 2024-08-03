@@ -6,32 +6,36 @@
     <title>Register Page</title>
     <link rel = "stylesheet" href = "styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src = "script.js"></script>
+    <script defer src = "script.js"></script>
 </head>
 <body>
     <div class="Container">
         <div class="Left">
-            <form>
+            <form novalidate>
                 <div class = "Title">
                     <h1> Sign Up! </h1>
-                    <span> Lorem ipsum, dolor sit amet consectetur!</span>
+                    <p> Lorem ipsum, dolor sit amet consectetur!</p>
                 </div>
-                <section>
-                    <input type = 'text' name = 'name' placeholder = 'Name*' required>
+                <section class = 'Field'>
+                    <input type = 'text' id = 'name' name = 'name' placeholder = 'Name*' required>
+                    <span></span>
                 </section>
-                <section>
+                <section class = 'Field'>
                     <input type = 'email' name = 'email' placeholder = 'Email*' id = 'email' required>
+                    <span></span>
                 </section>
-                <section>
+                <section class = 'Field'>
                     <input type = 'password' name = 'password' placeholder = 'Password*' id = 'password' required>
                     <i class='bx bx-compass' id = 'password'></i>
+                    <span></span>
                 </section>
-                <section>
+                <section class = 'Field'>
                     <input type = 'password' name = 'name' placeholder = 'Confirm Password*' id = 'confirm-password' required>
                     <i class='bx bx-compass' id = 'confirm-password'></i>
+                    <span></span>
                 </section>
                 <section>
-                    <button type = 'submit'>Submit</button>
+                    <button id = 'submit' type = 'submit'>Submit</button>
                 </section>
             </form>
         </div>

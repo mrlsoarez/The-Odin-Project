@@ -29,10 +29,12 @@
 }
 
 .Container .Left form {
+    display: flex;
     flex-direction: column;
     width: 80%;
     height: 60%;
     padding: 5%;
+    gap: 5px;
     background: white;
     border-radius: 25px;
 }
@@ -45,6 +47,24 @@
     font-weight: bolder;
     position: relative;
     padding: 4%;
+}
+
+.Container .Left form > section > span {
+    width: 100%;
+    font-size: 0.8rem;
+    font-weight: 100;
+    color: black;
+}
+
+.Container .Left form >  .Invalid {
+    border-radius: 25px;
+    width: 100%;
+    animation: little-animation 1s forwards;
+}
+
+@keyframes little-animation {
+    from {background: white;}
+    to { background: rgb(255, 163, 163); }
 }
 
 .Container .Left form > section:nth-child(4) > i,
@@ -104,3 +124,4 @@
 .Container .Left form > section > input:invalid {
     border-bottom: '1px solid red';
 }
+
