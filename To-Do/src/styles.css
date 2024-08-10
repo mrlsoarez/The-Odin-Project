@@ -1,0 +1,267 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --green: rgb(124, 242, 124);
+    --soft-black: rgb(29, 29, 29);
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: var(--soft-black);
+}
+
+main {
+    padding: 5%;
+    border: 2px solid black;
+    height: 80vh;
+    width: 65vw;
+}
+
+/* ===== ADD PROJECT DIALOGUE ====== */
+
+/* === BUTTON === */
+
+.Toggle-Dialogue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 2.5%;
+    right: 2.5%;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border: 1px dotted var(--green);
+    font-size: 50px;
+    background: var(--soft-black);
+    color: var(--green);
+}
+
+.Toggle-Dialogue:hover {
+    background: black;
+    cursor: pointer;
+}
+
+/* == DIALOGUE BOX == */
+
+.Add {
+    display: none;
+}
+
+.Add.Open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin: 0 auto;
+    width: 30%;
+    height: 50%;
+    background: rgb(29, 29, 29);
+    border: 2px solid var(--green);
+    transition: linear 1s;
+}
+
+.Add > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.Add > form > section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 90%;
+    height: 30%;
+}
+
+.Add > form > section > label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    height: 55%;
+    width: 25%;
+    background: var(--green);
+}
+
+.Add > form > section > input {
+    width: 80%;
+    height: 50%;
+    padding: 5px;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--green);
+    color: var(--green);
+    background: none;
+}
+
+.Add > form > section:nth-child(2) > select {
+    width: 80%;
+    height: 50%;
+    font-size: 20px;
+    background: none;
+    padding: 5px;
+    border: 1px solid var(--green);
+    color: var(--green);
+}
+
+.Add > form > section:nth-child(3) > input {
+    width: 50%;
+    height: 50%;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 35px;
+    border: 1px solid var(--green);
+    color: var(--green);
+    background: black;
+}
+
+.Add > #close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px; 
+    height: 30px;
+    border: 2px dotted var(--green);
+    border-radius: 25px;
+    color: var(--green);
+    background: black;
+}
+
+/* ====== PANEL ====== */
+
+.Panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    width: 5%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: black;
+    position: absolute;
+}
+
+.Panel > ul {
+    width: 90%;
+    height: 80px;
+}
+
+.Panel > ul > li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--green);
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+}
+
+.Panel > ul > li > button {
+    width: 100%;
+    height: 100%;
+    font-size: 25px;
+    background: none;
+    border: none;
+}
+
+/* === PROJECT PAGE === */
+
+main {  
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: black;
+    color: var(--green);
+    overflow: scroll;
+}
+
+main >  h1 {
+    display: flex;
+    font-weight: bolder;
+    text-shadow: 2px 2px white;
+}
+
+main > form {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    position: relative;
+}
+
+main > form > section {
+    display: flex;
+    flex-direction: column;
+    font-weight: 100;
+    color: var(--green)
+}
+
+main > form > section > input {
+    width: 50%;
+    height: 50px;
+    font-size: 15px;
+    outline: none;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--green);
+    color: var(--green);
+}
+
+main > form  > #add-task {
+    position: absolute;
+    right: 10%;
+    top: 0px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+
+main  > .Task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    gap: 5px;
+}
+
+main > .Task > .checkmark {
+    color: var(--soft-black);
+}
+
+main > .Task > .checkmark:hover {
+    color: red;
+    cursor: pointer;
+}
+
+main > .Task > #task-container > input {
+    opacity: 1;
+}
+
+/* ====== CALENDAR ===== */
+
+.Calendar > .Month > section {
+    display: grid;
+    margin-top: 20px;
+    grid-template-columns: repeat(5, 1fr); 
+}
+
+.Calendar > .Month > section > div {
+    padding: 10px;
+    height: 100px;
+    border: 1px dotted var(--green)
+}

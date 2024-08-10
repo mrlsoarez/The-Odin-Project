@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do</title>
+  <link rel = "stylesheet" href = "../src/styles.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <main>
+    </main>
+    <div class = 'Panel'>
+      <ul>
+        <li class = 'Calendar-Button' style = 'border-bottom: 1px solid black'><i class='bx bx-calendar' ></i></li>
+      </ul>
+    </div>
+    <!-- DIALOGUE -->
+    <button class = 'Toggle-Dialogue'>+</button>
+    <dialog class = 'Add' open>
+      <form>
+        <section>
+          <label><i class='bx bx-task'></i></label>
+          <input id = 'project' type = 'text' placeholder = 'Digite o nome do projeto'>
+        </section>
+        <section>
+          <label><i class='bx bxs-color'></i></label>
+          <select>
+            <option>&#128540</option>
+            <option> B </option>
+          </select>
+        </section>
+        <section id = 'submit-box'>
+          <input id = 'submit' type = 'submit' value = 'Criar projeto'>
+        </section>
+      </form>
+      <button id = 'close'>X</button>
+    </dialog>
+</body>
+
+</html>
