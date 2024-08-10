@@ -1,5 +1,94 @@
 import { render } from './modules/render'
 
+const projects_DOM = ['li', 'button']
+
+function renderProject() {
+
+    const ul = document.querySelector('ul')
+
+    function deleteAll(DIV) {
+        while (DIV.hasChildNodes()) {
+            DIV.removeChild(DIV.firstChild)
+        }
+    }
+
+    function addNewProject(add) {
+
+        function swapIndex() {
+            const last_li = projects_DOM[projects_DOM.length - 1]
+            const btn = projects_DOM[projects_DOM.length - 2]
+            projects_DOM[projects_DOM.length - 1] = btn
+            projects_DOM[projects_DOM.length - 2] = last_li
+        }
+    
+        add.addEventListener('click', () => {
+            projects_DOM.push('li')
+            swapIndex()
+            renderProject()
+        })
+    }
+    
+    function AppendInto() {
+        const title = (li) => {
+
+            const div = document.createElement('div')
+            div.className = 'Project-Title'
+
+            const form = document.createElement('form')
+            const input = document.createElement('input')
+            input.setAttribute('placeholder', 'Adicione o título!')
+            
+            form.append(input)
+            div.append(form)
+            li.append(div)
+        }
+
+        const task = (li) => {
+
+            const div = document.createElement('div')
+            div.className = 'Tasks'
+
+            const ul = document.createElement('ul')
+            const list = document.createElement('li')
+            
+        }
+        return { title }
+    }
+
+    
+
+    deleteAll(ul)
+
+    const append = AppendInto()
+    const forms = document.querySelectorAll('form')
+    projects_DOM.forEach((project) => {
+        const li = document.createElement('li')
+        li.className = 'Project'
+        if (project == 'button') {
+            const button = document.createElement('button')
+            button.innerText = '+'
+            button.id = 'ADD'
+            addNewProject(button)
+            li.append(button)
+        }
+        else {
+            append.title(li)
+
+        }
+        ul.append(li)
+    })
+
+    forms.forEach((form) => {
+        console.log(form)
+    })
+}
+
+
+
+document.addEventListener('DOMContentLoaded', renderProject)
+
+
+/*
 var projects = []
 
 async function DOMInteraction() {
@@ -130,3 +219,4 @@ function deleteContent(content) {
 }
 
 document.addEventListener('DOMContentLoaded', DOMInteraction)
+*/
