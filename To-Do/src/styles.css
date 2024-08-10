@@ -60,7 +60,7 @@ main {
     height: 15%;
 }
 
-.Projects > ul > .Project > .Project-Title > form > input  {
+.Projects > ul > .Project input  {
     height: 50%;
     padding: 5px;
     background: none;
@@ -69,7 +69,7 @@ main {
     outline: none;
 }
 
-.Projects > ul > li > button {
+.Projects > ul > .Project button {
     width: 100%;
     height: 100%;
     background: none;

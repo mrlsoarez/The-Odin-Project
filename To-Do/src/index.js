@@ -1,91 +1,119 @@
-import { render } from './modules/render'
+import { DOMCreator } from './modules/DOMCreator'
 
 const projects_DOM = ['li', 'button']
 
-function renderProject() {
+function DOMInteraction() {
+    const ul = document.querySelector('ul')
+    generateNewProjects(projects_DOM, ul)
+}
+
+// Função para trocar os dois index do array e jogar o botão p/ final
+function swapIndex(array) {
+
+    const last_index = array.length - 1
+    const button_index = array.length - 2
+
+    const li = array[last_index]
+    const button_li = array[button_index]
+
+    array[last_index] = button_li
+    array[button_index] = li
+
+}
+
+// Evento de clique para adicionar novo projeto
+function addEvent(btn) {
 
     const ul = document.querySelector('ul')
 
-    function deleteAll(DIV) {
-        while (DIV.hasChildNodes()) {
-            DIV.removeChild(DIV.firstChild)
-        }
-    }
-
-    function addNewProject(add) {
-
-        function swapIndex() {
-            const last_li = projects_DOM[projects_DOM.length - 1]
-            const btn = projects_DOM[projects_DOM.length - 2]
-            projects_DOM[projects_DOM.length - 1] = btn
-            projects_DOM[projects_DOM.length - 2] = last_li
-        }
-    
-        add.addEventListener('click', () => {
-            projects_DOM.push('li')
-            swapIndex()
-            renderProject()
-        })
-    }
-    
-    function AppendInto() {
-        const title = (li) => {
-
-            const div = document.createElement('div')
-            div.className = 'Project-Title'
-
-            const form = document.createElement('form')
-            const input = document.createElement('input')
-            input.setAttribute('placeholder', 'Adicione o título!')
-            
-            form.append(input)
-            div.append(form)
-            li.append(div)
-        }
-
-        const task = (li) => {
-
-            const div = document.createElement('div')
-            div.className = 'Tasks'
-
-            const ul = document.createElement('ul')
-            const list = document.createElement('li')
-            
-        }
-        return { title }
-    }
-
-    
-
-    deleteAll(ul)
-
-    const append = AppendInto()
-    const forms = document.querySelectorAll('form')
-    projects_DOM.forEach((project) => {
-        const li = document.createElement('li')
-        li.className = 'Project'
-        if (project == 'button') {
-            const button = document.createElement('button')
-            button.innerText = '+'
-            button.id = 'ADD'
-            addNewProject(button)
-            li.append(button)
-        }
-        else {
-            append.title(li)
-
-        }
-        ul.append(li)
+    btn.addEventListener('click', () => {
+        projects_DOM.push('li')
+        swapIndex(projects_DOM)
+        generateNewProjects(projects_DOM, ul)
     })
 
-    forms.forEach((form) => {
-        console.log(form)
+}
+
+//Geração de novo projeto com base no array
+function generateNewProjects(array, ul) {
+
+    const render = renderProject()
+    let container 
+
+    clearAllSpace(ul)
+
+    array.forEach((index) => {
+
+        if (index == 'li') {
+            container = render.container()
+            render.title(container)
+            render.tasks(container)
+        }
+        if (index == 'button') {
+            container = render.button()
+            addEvent(container)
+        }
+
+        ul.append(container)
+
     })
+
+}
+
+
+// Geração do projeto e interno do projeto com função auxiliar
+function renderProject() {
+    const builderDOM = DOMCreator()
+
+    const container = () => {
+        const list = builderDOM.generateList('Project')
+        return list
+    }
+
+    const button = () => {
+        const button = builderDOM.generateList('Project')
+        button.innerHTML = '<button>+</button>'
+        return button
+    }
+
+    const title = (container) => {
+
+        const title = builderDOM.generateDIV('Project-Title')
+        const input = document.createElement('input')
+        input.setAttribute('placeholder', 'Insira o título!')
+        title.append(input)
+
+        container.append(title)
+    }
+
+    const tasks = (container) => {
+        const tasks = builderDOM.generateWrapper('Tasks')
+
+        const default_task = builderDOM.generateWrapper('Task')
+        const checkbox = document.createElement('input')
+        checkbox.setAttribute('type', 'checkbox')
+        const input = document.createElement('input')
+        default_task.append(checkbox, input)
+
+        tasks.append(default_task)
+        container.append(tasks)
+    }
+
+    return { container, button, title, tasks }
+}
+
+// Remove todos os elementos das DIVS
+function clearAllSpace(DIV) {
+    while (DIV.hasChildNodes()) {
+        DIV.removeChild(DIV.firstChild)
+    }
 }
 
 
 
-document.addEventListener('DOMContentLoaded', renderProject)
+
+
+document.addEventListener('DOMContentLoaded', DOMInteraction)
 
 
 /*
