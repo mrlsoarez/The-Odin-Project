@@ -1,22 +1,20 @@
 export function DOMCreator() {
 
-    const generateDIV = (name) => {
-        const div = document.createElement('div')
-        div.className = name
-        return div
+    const element = (type, content, class_name) => {
+        const element = document.createElement(type)
+        element.innerHTML = content
+        element.className = class_name
+        return element
     }
-
-    const generateWrapper = (name) => {
-        const ul = document.createElement('ul')
-        ul.className = name
-        return ul
+    const emptyness = (container) => {
+        while (container.hasChildNodes()) {
+            container.removeChild(container.firstChild)
+        }
     }
-
-    const generateList = (name) => {
-        const il = document.createElement('il')
-        il.className = name
-        return il
+    const setAttribute = (container, attribute, type) => {
+        container.setAttribute(attribute, type)
     }
+    
+    return { element, emptyness, setAttribute }
 
-    return { generateDIV, generateWrapper, generateList }
 }

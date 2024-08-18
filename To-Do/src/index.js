@@ -1,12 +1,249 @@
+import { NavLink } from 'react-router-dom'
 import { DOMCreator } from './modules/DOMCreator'
 
-const projects_DOM = ['li', 'button']
-
-function DOMInteraction() {
-    const ul = document.querySelector('ul')
-    generateNewProjects(projects_DOM, ul)
+class ToDo {
+    constructor (title, date, description, icon, isDone) {
+        this.title = title 
+        this.date = date
+        this.description = description
+        this.icon = icon
+        this.isDone = isDone
+    }
+    
+    checkIFDone() {
+        if (this.isDone == false) {
+            return 'red'
+        }
+        else {
+            return 'green'
+        }
+    }
 }
 
+let PROJECTS_OVERVIEW = [{'Project': 0, 'Tasks': []}]
+let PROJECTS_DOM = ['li', 'button']
+let PROJECTS_TOTAL = 0
+
+function DOMInteraction() {
+
+    const Panel_Button = document.querySelectorAll('.Panel-Button')
+    const PAGE_GENERATE = PageGenerate()
+    Panel_Button.forEach((button) => {
+        button.addEventListener('click', () => {
+            if (button.id == 'home') {
+                PAGE_GENERATE.home()
+            }
+            else if (button.id == 'calendar') {
+                PAGE_GENERATE.calendar() 
+            }
+        })
+    })
+    
+    const Add_New_Projects_Button = document.querySelector('.Button')
+    const container = document.querySelector('ul')
+
+    Add_New_Projects_Button.addEventListener('click', () => {
+        addNewProject(container)
+    })
+    
+    
+
+    const Open_Task_Form_Buttons = document.querySelectorAll('.Toggle-Dialogue')
+    Open_Task_Form_Buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            TaskForm_Dealer(button.id)
+        })
+        button.addEventListener('mouseenter', () => {
+            button.style.cursor = 'pointer'
+            button.classList.add('Hover')
+        })
+    })
+
+    
+   
+    
+}
+
+function PageGenerate() {
+
+    const main = document.querySelector('.Content')
+    const render = DOMCreator() 
+    
+    const home = () => {
+        render.emptyness(main)
+
+        const container = render.element('section', '', 'Projects')
+        const h1 = render.element('h1', 'TO-DO', 'Title')
+        const ul = render.element('ul', '', '')
+
+        container.append(h1, ul)
+        main.append(container)
+
+        renderProjects(ul)
+    }
+
+    const calendar = () => {
+        render.emptyness(main)
+
+        const container = render.element('section', '', 'Calendar')
+        const h1 = render.element('h1', 'Calendar', 'Title')
+        const ul = render.element('ul', '', '')
+
+        container.append(h1, ul)
+        main.append(container)
+    }
+    return {home, calendar}
+}
+
+function renderProjects(container) {
+
+    const render = DOMCreator()
+
+    function renderTasks(container, index) {
+        PROJECTS_OVERVIEW[index].Tasks.forEach((task) => {
+            const li = render.element('li', '', 'Task')
+            const input = render.element('input', '', 'Task-Doner')
+            render.setAttribute(input, 'type', 'checkbox')
+            const span = render.element('span', task.title, '')
+            span.style.color = task.checkIFDone()
+            li.append(input, span)
+            container.append(li)
+        })
+    }
+
+    render.emptyness(container)
+
+    for (let i = 0; i < PROJECTS_DOM.length; i++) {   
+        const li = render.element('li', '', 'Project')
+        if (PROJECTS_DOM[i] == 'button') {
+            const button = render.element('button', '', 'Button')
+            li.append(button)
+            container.append(li)
+            break    
+        }
+
+        const title = render.element('h2', 'Title', 'Title')
+        const btn = render.element('button', "<i class='bx bx-message-square-add'></i>", 'Toggle-Dialogue')
+        btn.id = i
+        const ul = render.element('ul', '', 'Task-Wrapper')
+
+        renderTasks(ul, i)
+        li.append(title, btn, ul)
+        container.append(li)
+    }
+    DOMInteraction()
+
+}
+
+function addNewProject(container) {
+    
+    function swapIndex(array) {
+
+    const last_index = array.length - 1
+    const button_index = array.length - 2
+
+    const li = array[last_index]
+    const button_li = array[button_index]
+
+    array[last_index] = button_li
+    array[button_index] = li
+
+    }  
+
+
+    PROJECTS_DOM.push('li')
+    PROJECTS_OVERVIEW.push({'Project': PROJECTS_TOTAL += 1, 'Tasks': []})
+
+    swapIndex(PROJECTS_DOM)   
+    renderProjects(container)
+
+}
+
+function TaskForm_Dealer(index) {
+    
+    function openForm() {
+        dialog.classList.add('Open')
+        main.style.filter = 'blur(5px)'
+    }
+
+    function closeForm() {
+        dialog.classList.remove('Open')
+        main.style.filter = 'blur(0px)'
+        submit.removeEventListener('click', submitHandler)
+    }
+
+    function submitHandler(e) {
+        e.preventDefault()
+        const form = document.querySelector('form')
+        const formData = new FormData(form)
+
+        PROJECTS_OVERVIEW[index].Tasks.push(
+            new ToDo(
+                formData.get('task'),
+                formData.get('date'),
+                formData.get('description'),
+                formData.get('icon'),
+                false
+            )
+        )
+
+        renderProjects()
+        closeForm()
+    }
+    
+    const close = document.querySelector('#close')
+    const dialog = document.querySelector('.Add')
+    const main = document.querySelector('main')
+    const submit = document.querySelector('#submit')
+
+    if (!(dialog.className.includes('Open'))) {
+        openForm()
+        submit.addEventListener('click', submitHandler)
+    }
+
+    close.addEventListener('click', () => {
+        if (dialog.className.includes('Open')) {
+            closeForm()
+        }
+    })
+}
+
+
+//renderProjects()
+document.addEventListener('DOMContentLoaded', () => { PageGenerate().home()})
+/*
+function DOMInteraction() {
+    const ul = document.querySelector('ul')
+    generateNewProjects(PROJECTS_DOM, ul)
+    const task_form = document.querySelectorAll('.Task-Form')
+    TaskForm_Dealer(task_form)
+    renderTasks()
+}
+  
+function renderTasks() {
+    const project = document.querySelectorAll('.Project')
+    const wrapper = document.querySelector('.Task-Wrapper')
+    for (let i = 0; i < project.length; i++) {
+        for (let q=0; q < PROJECTS_OVERVIEWW.length; q++) {
+            if (i == PROJECTS_OVERVIEWW[q].Project) {
+                if (PROJECTS_OVERVIEWW[q].Tasks == 'button') {
+                    const il = document.createElement('il')
+                    const button = document.createElement('button')
+                    button.innerHTML = 'Create'
+                    openForm(button)
+                    il.append(button)
+                    wrapper.append(il)
+                }
+            }
+        }
+    }
+}
+
+function openForm(button) {
+    button.addEventListener('click', () => {
+        console.log(button)
+    })
+}
 // Função para trocar os dois index do array e jogar o botão p/ final
 function swapIndex(array) {
 
@@ -27,9 +264,10 @@ function addEvent(btn) {
     const ul = document.querySelector('ul')
 
     btn.addEventListener('click', () => {
-        projects_DOM.push('li')
-        swapIndex(projects_DOM)
-        generateNewProjects(projects_DOM, ul)
+        PROJECTS_DOM.push('li')
+        container.push({'Project': project_total += 1, 'Tasks': ['button']})
+        swapIndex(PROJECTS_DOM)
+        generateNewProjects(PROJECTS_DOM, ul)
     })
 
 }
@@ -47,12 +285,13 @@ function generateNewProjects(array, ul) {
         if (index == 'li') {
             container = render.container()
             render.title(container)
-            render.tasks(container)
+            render.tasks_form(container)
         }
         if (index == 'button') {
             container = render.button()
             addEvent(container)
         }
+      
 
         ul.append(container)
 
@@ -86,8 +325,13 @@ function renderProject() {
         container.append(title)
     }
 
-    const tasks = (container) => {
-        const tasks = builderDOM.generateWrapper('Tasks')
+    const tasks_form = (container) => {
+        const ul = document.createElement('ul')
+        ul.className = 'Task-Wrapper'
+        container.append(ul) 
+        return container
+        /*
+        const tasks_form = builderDOM.generateWrapper('tasks_form')
 
         const default_task = builderDOM.generateWrapper('Task')
         const checkbox = document.createElement('input')
@@ -95,11 +339,11 @@ function renderProject() {
         const input = document.createElement('input')
         default_task.append(checkbox, input)
 
-        tasks.append(default_task)
-        container.append(tasks)
+        tasks_form.append(default_task)
+        container.append(tasks_form)
     }
-
-    return { container, button, title, tasks }
+    
+    return { container, button, title, tasks_form }
 }
 
 // Remove todos os elementos das DIVS
@@ -109,6 +353,17 @@ function clearAllSpace(DIV) {
     }
 }
 
+function TaskForm_Dealer(task_form) {
+    console.log(task_form, 'a')    
+    for (let i=0; i < task_form.length; i++) {
+        task_form[i].addEventListener('click', (e) => {
+            const form = document.createElement('form')
+            const input1 = document.createElement
+            e.preventDefault()
+        })
+    } 
+}
+
 
 
 
@@ -116,8 +371,9 @@ function clearAllSpace(DIV) {
 document.addEventListener('DOMContentLoaded', DOMInteraction)
 
 
+*/
 /*
-var projects = []
+let projects = []
 
 async function DOMInteraction() {
     activateDialogue()
@@ -161,10 +417,10 @@ function closeDialogue() {
 function openProject() {
 
     class Project {
-        constructor(name, icon, tasks = []) {
+        constructor(name, icon, tasks_form = []) {
             this.name = name
             this.icon = icon
-            this.tasks = tasks
+            this.tasks_form = tasks_form
         }
     }
 
@@ -216,7 +472,7 @@ function openNewProject(projects) {
         pages[i].addEventListener('click', () => {
             deleteContent(content)
             // content.classList.remove('Calendar')
-            rendering.project(projects[i].name, projects[i].icon, projects[i].tasks)
+            rendering.project(projects[i].name, projects[i].icon, projects[i].tasks_form)
         })
 
     }
@@ -231,12 +487,12 @@ function openCalendar() {
     
     calendar.addEventListener('click', () => {
         deleteContent(content)
-        const tasks = []
+        const tasks_form = []
         for (let i = 0; i < projects.length; i++) {
-            tasks.push(projects[i].tasks)
+            tasks_form.push(projects[i].tasks_form)
         }
         content.classList.add('Calendar')
-        rendering.calendar(tasks)
+        rendering.calendar(tasks_form)
     })
 }
 

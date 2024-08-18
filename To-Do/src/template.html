@@ -9,13 +9,40 @@
 </head>
 <body>
   <main>
-    <div class = 'Panel'></div>
-    <div class = 'Projects'>
-      <div class = 'Title'><h1> To-Do</h1></div>
-      <ul>
-      </ul>
+    <div class = 'Panel'>
+      <button class = 'Panel-Button' id = 'home'> <i class='bx bx-home' ></i> </button>
+      <button class = 'Panel-Button' id = 'calendar'> <i class='bx bxs-calendar' ></i> </button>
     </div>
+    <div class = 'Content'></div>
   </main>
+    <dialog class = 'Add' open>
+      <form>
+        <section>
+          <label><i class='bx bx-task'></i></label>
+          <input id = 'project' type = 'text' placeholder = 'Digite o nome do projeto' name = 'task'>
+        </section>
+        <section>
+          <label><i class='bx bx-task'></i></label>
+          <input type = 'date' name = 'date'>
+        </section>
+        <section>
+          <label><i class='bx bx-task'></i></label>
+          <textarea name = 'description'></textarea>
+        </section>
+        <section>
+          <label><i class='bx bxs-color'></i></label>
+          <select name = 'icon'>
+            <option>&#128540</option>
+            <option> B </option>
+          </select>
+        </section>
+      
+        <section id = 'submit-box'>
+          <input id = 'submit' type = 'submit' value = 'Criar projeto'>
+        </section>
+      </form>
+      <button id = 'close'>X</button>
+    </dialog>
   <!--
     <div class = 'Panel'>
       
@@ -26,26 +53,7 @@
     <main>
       <div class = 'Project'></div>
     </main>
-    <button class = 'Toggle-Dialogue'>+</button>
-    <dialog class = 'Add' open>
-      <form>
-        <section>
-          <label><i class='bx bx-task'></i></label>
-          <input id = 'project' type = 'text' placeholder = 'Digite o nome do projeto'>
-        </section>
-        <section>
-          <label><i class='bx bxs-color'></i></label>
-          <select>
-            <option>&#128540</option>
-            <option> B </option>
-          </select>
-        </section>
-        <section id = 'submit-box'>
-          <input id = 'submit' type = 'submit' value = 'Criar projeto'>
-        </section>
-      </form>
-      <button id = 'close'>X</button>
-    </dialog>
+    
   -->
 </body>
 

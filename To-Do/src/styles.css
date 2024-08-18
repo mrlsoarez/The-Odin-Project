@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+:root {
+    --main-color: rgb(255, 87, 87);
+    --darker-color: rgb(151, 32, 36);
+}
+
 main {
     display: flex;
     width: 100vw;
@@ -11,11 +16,24 @@ main {
 }
 
 .Panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 25px;
     width: 10vw;
     height: 100vh;
+    background-color: var(--darker-color);
 }
 
-.Projects {
+.Panel > button {
+    width: 50px;
+    height: 50px;
+}
+
+/* ====== TO-DO ===== */
+
+.Projects, .Calendar{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,19 +42,19 @@ main {
     gap: 0.2rem;
     width: 90vw;
     height: 100vh;
-    background: rgb(249, 249, 249);
+    background: var(--main-color);
 }
 
-.Projects > .Title {
+.Projects > .Title, .Calendar > .Title {
     display: flex;
     width: 100%
 }
 
-.Projects > ul  {
+.Projects > ul, .Calendar > ul  {
     display: flex;
     align-items: center;
     list-style: none;
-    overflow-y: scroll;
+    overflow: scroll;
     gap: 0.2rem;
     padding: 0.5rem;
     width: 100%;
@@ -45,19 +63,51 @@ main {
 }
 
 .Projects > ul > .Project {
-    width: 20%;
+    width: 200px;
     height: 90%;
-    background: red;
+    background: rgb(254, 214, 214);
     border-radius: 25px;
-    overflow: hidden;
 }
 
-.Projects > ul > .Project > .Project-Title  {
+.Projects > ul > .Project > .Toggle-Dialogue {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 5px;
+    width: 100%;
+    height: 10%;
+    border-radius: 0px;
+    background: rgb(248, 248, 248);
+    box-shadow: 5px 5px rgb(124, 244, 228);
+    font-size: 35px;
+    color: rgb(124, 244, 228);
+    text-shadow: 2px 1px black;
+}
+
+.Projects > ul > .Project > .Toggle-Dialogue.Hover {
+    animation: change-color 2s linear;
+}
+
+.Projects > ul > .Project > .Title  {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
+    padding: 15px;
     height: 15%;
+}
+
+.Projects > ul > .Project > .Task-Wrapper {
+    list-style: none;
+    background: red;
+}
+
+.Projects > ul > .Project > .Task-Wrapper > .Task {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    list-style: none;
+    background: black;
 }
 
 .Projects > ul > .Project input  {
@@ -72,55 +122,11 @@ main {
 .Projects > ul > .Project button {
     width: 100%;
     height: 100%;
-    background: none;
-    font-size: 50px;
+    padding: 0px;
+    background: red;
+    font-size: 20px;
     border-radius: 25px;
 }
-/*
-
-:root {
-    --green: rgb(124, 242, 124);
-    --soft-black: rgb(29, 29, 29);
-}
-
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: var(--soft-black);
-}
-
-main {
-    padding: 5%;
-    background: white;
-    height: 100vh;
-    width: 100vw;
-}
-
-
-
-.Toggle-Dialogue {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 2.5%;
-    right: 2.5%;
-    width: 150px;
-    height: 150px;
-    border-radius: 100%;
-    border: 1px dotted var(--green);
-    font-size: 50px;
-    background: var(--soft-black);
-    color: var(--green);
-}
-
-.Toggle-Dialogue:hover {
-    background: black;
-    cursor: pointer;
-}
-
 
 .Add {
     display: none;
@@ -131,7 +137,8 @@ main {
     flex-direction: column;
     position: absolute;
     margin: 0 auto;
-    width: 30%;
+    top: 20%;
+    width: 70%;
     height: 50%;
     background: rgb(29, 29, 29);
     border: 2px solid var(--green);
@@ -153,6 +160,7 @@ main {
     width: 90%;
     height: 30%;
 }
+
 
 .Add > form > section > label {
     display: flex;
@@ -211,6 +219,61 @@ main {
     color: var(--green);
     background: black;
 }
+
+@keyframes change-color {
+    from {
+        background-color: var(--background-color)
+    }
+    to {
+        background-color: rgb(255, 255, 255);
+    }
+}
+/*
+
+:root {
+    --green: rgb(124, 242, 124);
+    --soft-black: rgb(29, 29, 29);
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: var(--soft-black);
+}
+
+main {
+    padding: 5%;
+    background: white;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+
+.Toggle-Dialogue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 2.5%;
+    right: 2.5%;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border: 1px dotted var(--green);
+    font-size: 50px;
+    background: var(--soft-black);
+    color: var(--green);
+}
+
+.Toggle-Dialogue:hover {
+    background: black;
+    cursor: pointer;
+}
+
+
 
 
 .Panel {
