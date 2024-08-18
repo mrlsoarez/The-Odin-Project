@@ -5,14 +5,17 @@
 }
 
 :root {
-    --main-color: rgb(255, 87, 87);
-    --darker-color: rgb(151, 32, 36);
+    --main-color: rgb(255, 255, 255);
+    --darker-color: rgb(255, 255, 255);   
+    --font-color-hover-panel: rgb(0, 0, 0);
+    --font-color: rgb(0, 0, 0);
 }
 
 main {
     display: flex;
     width: 100vw;
     height: 100vh;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .Panel {
@@ -23,15 +26,19 @@ main {
     padding: 25px;
     width: 10vw;
     height: 100vh;
-    background-color: var(--darker-color);
+    background-color: var(--font-color-hover-panel);
 }
 
 .Panel > button {
     width: 50px;
     height: 50px;
+    background-color: var(--main-color);
+    border: none;
+    font-size: 30px;
+    color: var(--font-color);
 }
 
-/* ====== TO-DO ===== */
+/* ====== TO-DO && CALENDAR ===== */
 
 .Projects, .Calendar{
     display: flex;
@@ -42,7 +49,7 @@ main {
     gap: 0.2rem;
     width: 90vw;
     height: 100vh;
-    background: var(--main-color);
+    background: linear-gradient(var(--main-color), var(--darker-color));
 }
 
 .Projects > .Title, .Calendar > .Title {
@@ -62,14 +69,40 @@ main {
     border: 1px solid black;
 }
 
+/* ==== TO-DO ==== */
+
+
+
+.Projects > .Title  {
+    justify-content: start;
+    letter-spacing: 5px;
+    text-shadow: 2px 2px black;
+    font-size: 100px;
+    font-weight: 100;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.Projects > ul {
+    gap: 15px;
+}
+
 .Projects > ul > .Project {
     width: 200px;
     height: 90%;
-    background: rgb(254, 214, 214);
-    border-radius: 25px;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 10px;
 }
 
-.Projects > ul > .Project > .Toggle-Dialogue {
+.Projects > ul > .Project > .Project {
+    display: flex;
+    justify-content: end;
+    align-items: start;
+    width: 100%;
+    background: red;
+}
+.Projects > ul > .Project > .Toggle-Dialogue,
+.Projects > ul > .Project > .Task-Wrapper > .Task  {
     display: flex;
     justify-content: end;
     align-items: center;
@@ -78,11 +111,12 @@ main {
     height: 10%;
     border-radius: 0px;
     background: rgb(248, 248, 248);
-    box-shadow: 5px 5px rgb(124, 244, 228);
+    box-shadow: 2px 4px rgb(124, 244, 228);
     font-size: 35px;
     color: rgb(124, 244, 228);
     text-shadow: 2px 1px black;
 }
+
 
 .Projects > ul > .Project > .Toggle-Dialogue.Hover {
     animation: change-color 2s linear;
@@ -99,15 +133,15 @@ main {
 
 .Projects > ul > .Project > .Task-Wrapper {
     list-style: none;
-    background: red;
 }
 
 .Projects > ul > .Project > .Task-Wrapper > .Task {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    font-size: 25px;
     gap: 5px;
     list-style: none;
-    background: black;
 }
 
 .Projects > ul > .Project input  {
@@ -119,10 +153,9 @@ main {
     outline: none;
 }
 
-.Projects > ul > .Project button {
+.Projects > ul > .Project > button {
     width: 100%;
     height: 100%;
-    padding: 0px;
     background: red;
     font-size: 20px;
     border-radius: 25px;

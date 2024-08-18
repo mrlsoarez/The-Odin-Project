@@ -37,6 +37,14 @@ function DOMInteraction() {
                 PAGE_GENERATE.calendar() 
             }
         })
+        button.addEventListener('mouseenter', () => {
+            button.style.cursor = 'pointer'
+            button.style.color = 'var(--font-color-hover-panel)'
+        })
+        button.addEventListener('mouseleave', () => {
+            button.style.cursor = 'cursor'
+            button.style.color = 'var(--font-color)'
+        })
     })
     
     const Add_New_Projects_Button = document.querySelector('.Button')
@@ -122,7 +130,7 @@ function renderProjects(container) {
             break    
         }
 
-        const title = render.element('h2', 'Title', 'Title')
+        const title = render.element('h2', 'Title', 'Project-Title')
         const btn = render.element('button', "<i class='bx bx-message-square-add'></i>", 'Toggle-Dialogue')
         btn.id = i
         const ul = render.element('ul', '', 'Task-Wrapper')
@@ -160,7 +168,7 @@ function addNewProject(container) {
 }
 
 function TaskForm_Dealer(index) {
-    
+    const container = document.querySelector('ul')
     function openForm() {
         dialog.classList.add('Open')
         main.style.filter = 'blur(5px)'
@@ -187,7 +195,7 @@ function TaskForm_Dealer(index) {
             )
         )
 
-        renderProjects()
+        renderProjects(container)
         closeForm()
     }
     
