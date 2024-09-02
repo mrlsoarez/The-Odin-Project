@@ -173,71 +173,88 @@ main {
     position: absolute;
     margin: 0 auto;
     top: 20%;
-    width: 70%;
+    width: 30%;
     height: 50%;
     background: var(--background-color);
-    border: 1px solid green;
     transition: linear 1s;
 }
 
-.Add > form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+
+.Add.Open {
+    border: none;
+    box-shadow: 3px 5px var(--darker-color);
+    border-radius: 9px;
+}
+
+form {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
     height: 100%;
 }
 
-.Add > form > section {
+section {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+section > i {
+    font-size: 20px;
+}
+label {
     display: flex;
     align-items: center;
-    gap: 15px;
-    width: 90%;
-    height: 30%;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
 }
 
 
-.Add > form > section > label {
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+select {
+    cursor: pointer;
+}
+
+#submit-box {
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 45px;
-    height: 55%;
-    width: 25%;
-    background: var(--green);
 }
 
-.Add > form > section > input {
-    width: 80%;
-    height: 50%;
-    padding: 5px;
-    font-size: 20px;
-    outline: none;
+#submit {
+    background-color: var(--main-color);
     border: none;
-    border-bottom: 1px solid var(--green);
-    color: var(--green);
-    background: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.Add > form > section:nth-child(2) > select {
-    width: 80%;
-    height: 50%;
-    font-size: 20px;
-    background: none;
-    padding: 5px;
-    border: 1px solid var(--green);
-    color: var(--green);
+#submit:hover {
+    color: white;
+    background-color: var(--darker-color);
 }
 
-.Add > form > section:nth-child(3) > input {
-    width: 50%;
-    height: 50%;
+/* Icon styling */
+.bx {
     font-size: 20px;
-    padding: 5px;
-    border-radius: 35px;
-    border: 1px solid var(--green);
-    color: var(--green);
-    background: black;
+    margin-right: 10px;
 }
 
 .Add > #close {
@@ -245,14 +262,14 @@ main {
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: -10px;
+    right: -10px;
     width: 30px; 
     height: 30px;
-    border: 2px dotted var(--green);
+    border: none;
     border-radius: 25px;
-    color: var(--green);
-    background: black;
+    background: var(--darker-color);
+    color: white;
 }
 
 /* ==== CALENDAR ==== */
