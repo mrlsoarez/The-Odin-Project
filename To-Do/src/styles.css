@@ -5,10 +5,10 @@
 }
 
 :root {
-    --main-color: rgb(255, 255, 255);
-    --darker-color: rgb(255, 255, 255);   
-    --font-color-hover-panel: rgb(0, 0, 0);
-    --font-color: rgb(0, 0, 0);
+    --main-color: rgb(217, 251, 255);
+    --darker-color: rgb(133, 247, 255);   
+    --color-panel: rgb(255, 255, 255);
+    --font-color: rgb(46, 175, 207);
 }
 
 main {
@@ -26,7 +26,7 @@ main {
     padding: 25px;
     width: 10vw;
     height: 100vh;
-    background-color: var(--font-color-hover-panel);
+    background-color: var(--color-panel);
 }
 
 .Panel > button {
@@ -38,7 +38,7 @@ main {
     color: var(--font-color);
 }
 
-/* ====== TO-DO && CALENDAR ===== */
+/* ====== CALENDAR ===== */
 
 .Projects, .Calendar{
     display: flex;
@@ -54,7 +54,10 @@ main {
 
 .Projects > .Title, .Calendar > .Title {
     display: flex;
-    width: 100%
+    width: 100%;
+    font-size: 65px;
+    color: var(--font-color);
+    text-shadow: 2px 2px white;
 }
 
 .Projects > ul, .Calendar > ul  {
@@ -72,35 +75,33 @@ main {
 /* ==== TO-DO ==== */
 
 
-
-.Projects > .Title  {
-    justify-content: start;
-    letter-spacing: 5px;
-    text-shadow: 2px 2px black;
-    font-size: 100px;
-    font-weight: 100;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
 .Projects > ul {
     gap: 15px;
+    background-color: white;
+}
+
+.Projects > ul > li:last-child {
+    border: none;
+    background: none;
 }
 
 .Projects > ul > .Project {
-    width: 200px;
-    height: 90%;
-    border: 1px solid black;
+    width: 250px;
+    height: 95%;
     padding: 5px;
     border-radius: 10px;
+    background-color: var(--darker-color);
+    color: white;
 }
+
 
 .Projects > ul > .Project > .Project {
     display: flex;
     justify-content: end;
     align-items: start;
     width: 100%;
-    background: red;
 }
+
 .Projects > ul > .Project > .Toggle-Dialogue,
 .Projects > ul > .Project > .Task-Wrapper > .Task  {
     display: flex;
@@ -110,8 +111,8 @@ main {
     width: 100%;
     height: 10%;
     border-radius: 0px;
-    background: rgb(248, 248, 248);
-    box-shadow: 2px 4px rgb(124, 244, 228);
+    background-color: var(--main-color);
+    box-shadow: 2px 4px var(--darker-color);
     font-size: 35px;
     color: rgb(124, 244, 228);
     text-shadow: 2px 1px black;
@@ -156,10 +157,11 @@ main {
 .Projects > ul > .Project > button {
     width: 100%;
     height: 100%;
-    background: red;
     font-size: 20px;
     border-radius: 25px;
+    background-color: var(--main-color);
 }
+
 
 .Add {
     display: none;
@@ -173,8 +175,8 @@ main {
     top: 20%;
     width: 70%;
     height: 50%;
-    background: rgb(29, 29, 29);
-    border: 2px solid var(--green);
+    background: var(--background-color);
+    border: 1px solid green;
     transition: linear 1s;
 }
 
@@ -253,6 +255,36 @@ main {
     background: black;
 }
 
+/* ==== CALENDAR ==== */
+
+main > .Content > .Calendar > ul{
+    display: grid;
+    grid-template-columns: repeat(12, 100%);
+    grid-template-rows: repeat(1, 1fr);
+    overflow: hidden;
+    height: 80%;
+    color: var(--font-color);
+}
+
+main >.Content > .Calendar > ul > * {
+    height: 100%;
+    padding: 25px;
+}
+
+main > .Content > .Calendar > ul > .Month > section {
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(7, 1fr);
+    color: var(--font-color);
+}
+
+main > .Content > .Calendar > ul > .Month > section > div {
+    border: 1px solid var(--font-color);
+    background-color: var(--color-panel);
+    padding: 5px;
+}
+
+
 @keyframes change-color {
     from {
         background-color: var(--background-color)
@@ -261,180 +293,3 @@ main {
         background-color: rgb(255, 255, 255);
     }
 }
-/*
-
-:root {
-    --green: rgb(124, 242, 124);
-    --soft-black: rgb(29, 29, 29);
-}
-
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: var(--soft-black);
-}
-
-main {
-    padding: 5%;
-    background: white;
-    height: 100vh;
-    width: 100vw;
-}
-
-
-
-.Toggle-Dialogue {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 2.5%;
-    right: 2.5%;
-    width: 150px;
-    height: 150px;
-    border-radius: 100%;
-    border: 1px dotted var(--green);
-    font-size: 50px;
-    background: var(--soft-black);
-    color: var(--green);
-}
-
-.Toggle-Dialogue:hover {
-    background: black;
-    cursor: pointer;
-}
-
-
-
-
-.Panel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px;
-    width: 5%;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    background: black;
-    position: absolute;
-}
-
-.Panel > ul {
-    width: 90%;
-    height: 80px;
-}
-
-.Panel > ul > li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--green);
-    width: 100%;
-    height: 100%;
-    font-size: 30px;
-}
-
-.Panel > ul > li > button {
-    width: 100%;
-    height: 100%;
-    font-size: 25px;
-    background: none;
-    border: none;
-}
-
-
-main {  
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    background: red;
-    color: var(--green);
-    overflow: scroll;
-    padding: 15px;
-}
-
-main > .Project {
-    background-color: rgb(8, 8, 8);
-    width: 50%;
-    height: 90%;
-}
-
-main >  h1 {
-    display: flex;
-    font-weight: bolder;
-    text-shadow: 2px 2px white;
-}
-
-main > form {
-    display: flex;
-    flex-direction: column;
-    gap: 35px;
-    position: relative;
-}
-
-main > form > section {
-    display: flex;
-    flex-direction: column;
-    font-weight: 100;
-    color: var(--green)
-}
-
-main > form > section > input {
-    width: 50%;
-    height: 50px;
-    font-size: 15px;
-    outline: none;
-    background: none;
-    border: none;
-    border-bottom: 1px solid var(--green);
-    color: var(--green);
-}
-
-main > form  > #add-task {
-    position: absolute;
-    right: 10%;
-    top: 0px;
-    width: 200px;
-    height: 200px;
-    border-radius: 100px;
-}
-
-main  > .Task {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 50%;
-    gap: 5px;
-}
-
-main > .Task > .checkmark {
-    color: var(--soft-black);
-}
-
-main > .Task > .checkmark:hover {
-    color: red;
-    cursor: pointer;
-}
-
-main > .Task > #task-container > input {
-    opacity: 1;
-}
-
-
-.Calendar > .Month > section {
-    display: grid;
-    margin-top: 20px;
-    grid-template-columns: repeat(5, 1fr); 
-}
-
-.Calendar > .Month > section > div {
-    padding: 10px;
-    height: 100px;
-    border: 1px dotted var(--green)
-}
-
-*/

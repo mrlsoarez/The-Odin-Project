@@ -1,15 +1,14 @@
-import { NavLink } from 'react-router-dom'
-import { DOMCreator } from './modules/DOMCreator'
+import { DOMCreator } from './modules/DOMCreator.js'
 
 class ToDo {
-    constructor (title, date, description, icon, isDone) {
-        this.title = title 
+    constructor(title, date, description, icon, isDone) {
+        this.title = title
         this.date = date
         this.description = description
         this.icon = icon
         this.isDone = isDone
     }
-    
+
     checkIFDone() {
         if (this.isDone == false) {
             return 'red'
@@ -20,7 +19,7 @@ class ToDo {
     }
 }
 
-let PROJECTS_OVERVIEW = [{'Project': 0, 'Tasks': []}]
+let PROJECTS_OVERVIEW = [{ 'Project': 0, 'Tasks': [] }]
 let PROJECTS_DOM = ['li', 'button']
 let PROJECTS_TOTAL = 0
 
@@ -28,13 +27,15 @@ function DOMInteraction() {
 
     const Panel_Button = document.querySelectorAll('.Panel-Button')
     const PAGE_GENERATE = PageGenerate()
+    
     Panel_Button.forEach((button) => {
         button.addEventListener('click', () => {
+            
             if (button.id == 'home') {
                 PAGE_GENERATE.home()
             }
             else if (button.id == 'calendar') {
-                PAGE_GENERATE.calendar() 
+                PAGE_GENERATE.calendar()
             }
         })
         button.addEventListener('mouseenter', () => {
@@ -46,15 +47,15 @@ function DOMInteraction() {
             button.style.color = 'var(--font-color)'
         })
     })
-    
+
     const Add_New_Projects_Button = document.querySelector('.Button')
     const container = document.querySelector('ul')
 
     Add_New_Projects_Button.addEventListener('click', () => {
         addNewProject(container)
     })
-    
-    
+
+
 
     const Open_Task_Form_Buttons = document.querySelectorAll('.Toggle-Dialogue')
     Open_Task_Form_Buttons.forEach((button) => {
@@ -67,16 +68,16 @@ function DOMInteraction() {
         })
     })
 
-    
-   
-    
+
+
+
 }
 
 function PageGenerate() {
 
     const main = document.querySelector('.Content')
-    const render = DOMCreator() 
-    
+    const render = DOMCreator()
+
     const home = () => {
         render.emptyness(main)
 
@@ -91,17 +92,123 @@ function PageGenerate() {
     }
 
     const calendar = () => {
+
         render.emptyness(main)
 
         const container = render.element('section', '', 'Calendar')
         const h1 = render.element('h1', 'Calendar', 'Title')
         const ul = render.element('ul', '', '')
 
+        const year_number = 2024
+        const months = [['January', 31], ['February', 29], ['Mars', 31], ['April', 30], ['May', 31], ['June', 30], ['July', 31], ['August', 31], ['September', 30], ['October', 31], ['November', 30], ['December', 31]]
+
+        let month_days = []
+        const year = []
+
+        function createMonths() {
+            for (let i = 0; i < months.length; i++) {
+                for (let day = 1; day <= months[i][1]; day++) {
+                    let date = new Date(`${months[i][0]} ${day}, ${year_number}`)
+                    month_days.push(date)
+                }
+                year.push([month_days])
+                month_days = []
+            }
+        }
+
+        function renderMonths() {
+
+            // Criar o nome do mês
+            function createMonth(name) {
+
+                const month = document.createElement('div')
+                const h1 = document.createElement('h1')
+
+                month.className = 'Month'
+                h1.textContent = name
+
+                month.append(h1)
+                return month
+            }
+
+            // Criar os dias dentro do mês junto com tasks
+            function createDay(day, monthIndex) {
+                const div = document.createElement('div')
+                div.innerHTML = `<p>${day}</p>`
+                //getTask(day, div, monthIndex)
+                return div
+            }
+
+            // Criar o calendário com base nos 365 indexes
+            for (let i = 0; i < year.length; i++) {
+
+                const section = document.createElement('section')
+
+                const month = createMonth(months[i][0])
+                const monthIndex = i
+
+                // Criar o mês com os dias
+                for (let day = 1; day <= year[i][0].length; day++) {
+                    const day_div = createDay(day, monthIndex)
+                    section.append(day_div)
+                }
+
+                month.append(section)
+                ul.append(month)
+            }
+
+        }
+
         container.append(h1, ul)
         main.append(container)
+        /*
+        function getTask(day, div, monthIndex) {
+
+            function renderTask(task, div) {
+
+                function createButton() {
+                    const button = document.createElement('button')
+                    button.id = 'task'
+                    button.innerHTML = task.project
+                    return button
+                }
+
+                function createTaskWindow() {
+                    const window = document.createElement('div2')
+                    window.className = 'Window'
+                    window.innerHTML = `TASK DO DIA: ${task.name}`
+                    return window
+                }
+
+                const button = createButton()
+                const window = createTaskWindow()
+
+                div.append(button, window)
+
+            }
+            // Loop para renderizar as tasks com base na data
+            for (let i = 0; i < tasks.length; i++) {
+                for (let q = 0; q < tasks[i].length; q++) {
+                    const task = tasks[i][q]
+                    const date = new Date(task.date)
+                    const calendary_day = date.getDate(date.setDate(date.getDate() + 1))
+                    // Verifica se a data no calendário bate com a task (mês, dia)
+                    if (calendary_day == day && date.getMonth() == monthIndex) { renderTask(task, div) }
+                }
+            }
+        }
+
+        */
+        createMonths() // Guarda os meses em array
+        renderMonths() // Renderiza os meses em tela + junto com as tasks
+
     }
-    return {home, calendar}
+
+    
+    return { home, calendar }
+
 }
+
 
 function renderProjects(container) {
 
@@ -121,13 +228,14 @@ function renderProjects(container) {
 
     render.emptyness(container)
 
-    for (let i = 0; i < PROJECTS_DOM.length; i++) {   
+    for (let i = 0; i < PROJECTS_DOM.length; i++) {
         const li = render.element('li', '', 'Project')
         if (PROJECTS_DOM[i] == 'button') {
             const button = render.element('button', '', 'Button')
+            button.innerHTML = "+"
             li.append(button)
             container.append(li)
-            break    
+            break
         }
 
         const title = render.element('h2', 'Title', 'Project-Title')
@@ -144,25 +252,25 @@ function renderProjects(container) {
 }
 
 function addNewProject(container) {
-    
+
     function swapIndex(array) {
 
-    const last_index = array.length - 1
-    const button_index = array.length - 2
+        const last_index = array.length - 1
+        const button_index = array.length - 2
 
-    const li = array[last_index]
-    const button_li = array[button_index]
+        const li = array[last_index]
+        const button_li = array[button_index]
 
-    array[last_index] = button_li
-    array[button_index] = li
+        array[last_index] = button_li
+        array[button_index] = li
 
-    }  
+    }
 
 
     PROJECTS_DOM.push('li')
-    PROJECTS_OVERVIEW.push({'Project': PROJECTS_TOTAL += 1, 'Tasks': []})
+    PROJECTS_OVERVIEW.push({ 'Project': PROJECTS_TOTAL += 1, 'Tasks': [] })
 
-    swapIndex(PROJECTS_DOM)   
+    swapIndex(PROJECTS_DOM)
     renderProjects(container)
 
 }
@@ -198,7 +306,7 @@ function TaskForm_Dealer(index) {
         renderProjects(container)
         closeForm()
     }
-    
+
     const close = document.querySelector('#close')
     const dialog = document.querySelector('.Add')
     const main = document.querySelector('main')
@@ -216,9 +324,13 @@ function TaskForm_Dealer(index) {
     })
 }
 
+function renderCalendar(container) {
+
+}
+
 
 //renderProjects()
-document.addEventListener('DOMContentLoaded', () => { PageGenerate().home()})
+document.addEventListener('DOMContentLoaded', () => { PageGenerate().home() })
 /*
 function DOMInteraction() {
     const ul = document.querySelector('ul')
