@@ -38,14 +38,7 @@ function DOMInteraction() {
                 PAGE_GENERATE.calendar()
             }
         })
-        button.addEventListener('mouseenter', () => {
-            button.style.cursor = 'pointer'
-            button.style.color = 'var(--font-color-hover-panel)'
-        })
-        button.addEventListener('mouseleave', () => {
-            button.style.cursor = 'cursor'
-            button.style.color = 'var(--font-color)'
-        })
+       
     })
 
     const Add_New_Projects_Button = document.querySelector('.Button')
@@ -82,10 +75,9 @@ function PageGenerate() {
         render.emptyness(main)
 
         const container = render.element('section', '', 'Projects')
-        const h1 = render.element('h1', 'TO-DO', 'Title')
         const ul = render.element('ul', '', '')
 
-        container.append(h1, ul)
+        container.append(ul)
         main.append(container)
 
         renderProjects(ul)
@@ -96,7 +88,6 @@ function PageGenerate() {
         render.emptyness(main)
 
         const container = render.element('section', '', 'Calendar')
-        const h1 = render.element('h1', 'Calendar', 'Title')
         const ul = render.element('ul', '', '')
 
         const year_number = 2024
@@ -159,46 +150,9 @@ function PageGenerate() {
 
         }
 
-        container.append(h1, ul)
+        container.append(ul)
         main.append(container)
-        /*
-        function getTask(day, div, monthIndex) {
-
-            function renderTask(task, div) {
-
-                function createButton() {
-                    const button = document.createElement('button')
-                    button.id = 'task'
-                    button.innerHTML = task.project
-                    return button
-                }
-
-                function createTaskWindow() {
-                    const window = document.createElement('div2')
-                    window.className = 'Window'
-                    window.innerHTML = `TASK DO DIA: ${task.name}`
-                    return window
-                }
-
-                const button = createButton()
-                const window = createTaskWindow()
-
-                div.append(button, window)
-
-            }
-            // Loop para renderizar as tasks com base na data
-            for (let i = 0; i < tasks.length; i++) {
-                for (let q = 0; q < tasks[i].length; q++) {
-                    const task = tasks[i][q]
-                    const date = new Date(task.date)
-                    const calendary_day = date.getDate(date.setDate(date.getDate() + 1))
-                    // Verifica se a data no calendário bate com a task (mês, dia)
-                    if (calendary_day == day && date.getMonth() == monthIndex) { renderTask(task, div) }
-                }
-            }
-        }
-
-        */
+       
         createMonths() // Guarda os meses em array
         renderMonths() // Renderiza os meses em tela + junto com as tasks
 
@@ -219,9 +173,12 @@ function renderProjects(container) {
             const li = render.element('li', '', 'Task')
             const input = render.element('input', '', 'Task-Doner')
             render.setAttribute(input, 'type', 'checkbox')
-            const span = render.element('span', task.title, '')
-            span.style.color = task.checkIFDone()
-            li.append(input, span)
+            const task_icon = render.element('span', task.icon, '')
+            const task_title = render.element('span', task.title, '')
+            task_icon.style.color = task.checkIFDone()
+            const span = render.element('div', '', '')
+            span.append(task_icon, task_title)
+            li.append(span, input)
             container.append(li)
         })
     }
@@ -238,13 +195,12 @@ function renderProjects(container) {
             break
         }
 
-        const title = render.element('h2', 'Title', 'Project-Title')
         const btn = render.element('button', "<i class='bx bx-message-square-add'></i>", 'Toggle-Dialogue')
         btn.id = i
         const ul = render.element('ul', '', 'Task-Wrapper')
 
         renderTasks(ul, i)
-        li.append(title, btn, ul)
+        li.append(btn, ul)
         container.append(li)
     }
     DOMInteraction()
