@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <script defer src = "script.js"></script>
+    <style>
+        .Table {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 5px solid black;
+            width: 500px;
+            height: 500px;
+        }
+
+        .Table>.Grid {
+            border: 5px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .Get-Player.Close {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <dialog class = "Get-Player" open>
+        <button class = "Button" id = "X"> X</button>
+        <button class = "Button" id = "O"> O</button>
+    </dialog>
+    <span class = "Table">
+
+    </span>
+
+</body>
+
+</html>
