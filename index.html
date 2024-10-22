@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Odin Project</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        :root {
+            --main: rgb(255, 203, 61);
+            --second: rgb(204, 190, 178);
+        }
+
+        body {
+            background-color: var(--second);
+            font-family: Verdana, Geneva, Tahoma, sans-serif
+        }
+
+        .Header {
+            background-image: url("/images/header.png");
+            width: 100%;
+            height: 15vh;
+        }
+
+        .Title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 2%;
+            color: var(--main);
+            padding: 2%;
+            text-shadow: 1px 1px black;
+        }
+
+        .Title>img {
+            width: 150px;
+            height: 100px;
+            position: absolute;
+            top: 10px;
+            left: 0px;
+        }
+
+        .Projects {
+            display: grid;
+            grid-template-columns: repeat(3, 25%);
+            grid-template-rows: 35%;
+            gap: 5px;
+            padding: 2%;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .Projects>.Card {
+            display: grid;
+            grid-template-rows: 80% 20%;
+            border: 5px solid black;
+            overflow: hidden;
+        }
+
+        .Projects>.Card>.Image {
+            background-color: rgb(172, 162, 154);
+        }
+
+        .Projects>.Card>.Image>img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .Projects>.Card>.Title {
+            font-weight: 100;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Header"> </div>
+
+    <div class="Title">
+        <h1> The Odin Project </h1>
+        <img src="/images/logo.png">
+    </div>
+
+    <div class="Projects">
+
+        <a href="#" class="Card">
+            <div class="Image">
+                <img src="#">
+            </div>
+            <div class="Title">
+                <h3> Recipe-Page </h3>
+            </div>
+        </a>
+
+    
+
+    </div>
+</body>
+
+</html>
