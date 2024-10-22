@@ -73,7 +73,8 @@
     background-color: rgba(255, 255, 255, 0.9);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    box-shadow: 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -92,10 +93,20 @@ h2 {
 
 .icons i {
     font-size: 3em;
-    color: #FF5722; /* Cor dos ícones */
     transition: transform 0.3s;
 }
 
+.icons  i:nth-child(1)  {
+    color: var(--brazillian-blue);
+}
+
+.icons  i:nth-child(2)  {
+    color: green;
+}
+
+.icons  i:nth-child(3)  {
+    color: var(--brazillian-yellow);
+}
 .icons i:hover {
     transform: scale(1.2);
     cursor: pointer;
@@ -250,7 +261,7 @@ h2 {
 .Bottom .Recipe-Section {
     opacity: 0;
     height: 0;
-    transition: opacity 0.5s ease, height 0.5s ease; /* Suaviza a transição */
+    transition: opacity 0.5s ease, height 0.5s ease; 
 }
 
 .Bottom .Recipe-Section > section > * {
@@ -260,8 +271,9 @@ h2 {
 .Bottom .Recipe-Section.Active {
     padding: 50px;
     width: 100vw;
+    height: auto;
     animation: change-height 1s forwards;
-    opacity: 1; /* Torna a seção visível */
+    opacity: 1; 
 }
 
 .Bottom .Recipe-Section.Active > section > * {
@@ -274,8 +286,8 @@ h2 {
     border: 2px solid var(--brazillian-blue);
     border-radius: 25px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.9); /* Fundo claro com leve transparência */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background: rgba(255, 255, 255, 0.9); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
 }
 
 .Bottom .Recipe-Section.Active > section > .Image-Card {
@@ -287,18 +299,18 @@ h2 {
 .Bottom .Recipe-Section.Active > section > .Image-Card > img {
     width: 100%;
     height: 100%; 
-    border-radius: 15px; /* Bordas arredondadas */
+    border-radius: 15px; 
 }
 
 .Bottom .Recipe-Section > section > .Content-Card {
     width: 70%;
     height: 100%;
-    padding: 20px; /* Aumenta o espaço interno */
+    padding: 20px; 
     font-family: 'Arial', sans-serif;
     background: white;
     color: var(--brazillian-blue);
-    border-radius: 15px; /* Bordas arredondadas */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 15px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
 }
 
 .Bottom .Recipe-Section > section > .Content-Card > div > * {
@@ -306,23 +318,30 @@ h2 {
 }
 
 .Bottom .Recipe-Section > section > .Content-Card > .Title-Card {
-    font-size: 2.5em; /* Tamanho maior */
+    font-size: 2.5em; 
     text-shadow: 2px 2px var(--brazillian-yellow);
-    margin-bottom: 20px; /* Espaço abaixo do título */
-    font-weight: bold; /* Deixa o título em negrito */
+    margin-bottom: 20px; 
+    font-weight: bold; 
 }
 
 .Bottom .Recipe-Section > section > .Content-Card > .Description-Card {
-    font-size: 1.2em; /* Tamanho maior */
+    font-size: 1.2em; 
     font-style: italic;
-    margin-bottom: 30px; /* Espaço abaixo da descrição */
+    margin-bottom: 30px; 
 }
 
 .Bottom .Recipe-Section > section > .Content-Card > .Ingredients-Card,
 .Bottom .Recipe-Section > section > .Content-Card > .How-To-Card {
     padding: 15px;
-    font-weight: 300; /* Leve, mas legível */
-    background: rgba(240, 240, 240, 0.8); /* Fundo suave */
-    border-radius: 10px; /* Bordas arredondadas */
-    margin-bottom: 20px; /* Espaço abaixo das seções */
+    font-weight: 300; 
+    background: rgba(240, 240, 240, 0.8); 
+    border-radius: 10px; 
+    margin-bottom: 20px; 
+}
+
+
+footer {
+    width: 100%;
+    height: 5vh;
+    background: linear-gradient(var(--brazillian-blue), var(--light-blue));
 }
