@@ -1,0 +1,328 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* === ANIMATIONS === */
+
+@keyframes opacity-change {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes opacity-change-reverse {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes zoom-title {
+    0% { transform: scaleX(90%); }
+    100% { transform: scaleX(100%); }
+}
+
+@keyframes change-color-one {
+    0% { background: white; }
+    100% { background: var(--light-blue); }
+}
+
+@keyframes fade-in {
+    from { scale: 0.5; opacity: 0; }
+    to { scale: 1; opacity: 1 }
+}
+
+@keyframes change-height {
+    from { height: 0%; opacity: 0 }
+    to { height: 80vh; opacity: 1 }
+}
+
+@keyframes zooming-in {
+    0% { scale: 1 }
+    50% { scale: 1.15 }
+    100% { scale: 1 }
+}
+
+@keyframes zooming-out {
+    100% { scale: 1.18 }
+    50% { scale: 1.15 }
+    0% { scale: 1 }
+}
+
+:root {
+    --brazillian-blue: rgb(0, 81, 255);
+    --light-blue: rgb(86, 187, 255);
+    --brazillian-yellow: rgb(255, 187, 0);
+}
+
+
+/* === MIDDLE === */
+
+.Middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh; 
+    background: linear-gradient(135deg, rgba(255, 221, 51, 0.8), rgba(255, 153, 0, 0.8));
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.image.introduct {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.icons i {
+    font-size: 3em;
+    color: #FF5722; /* Cor dos ícones */
+    transition: transform 0.3s;
+}
+
+.icons i:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+
+/* === BOTTOM === */
+
+.Bottom {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    color: white;
+}
+
+.Bottom > .Recipe-Cards {
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    padding: 15px;
+    gap: 5px;
+}
+
+.Bottom > .Recipe-Cards > .Card {
+    border: 1px solid white;
+    animation: change-color-one 2s forwards;
+    position: relative;
+    border-radius: 25px;
+}
+
+.Bottom > .Recipe-Cards > .Card > img {
+    width: 100%;
+    height: 100%;
+    animation: fade-in linear;
+    animation-timeline: view();
+    border-radius: 25px;
+
+}
+
+/* HOVERING EVENT */
+
+.Bottom > .Recipe-Cards > .Card > .Hover-Cover {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    animation: opacity-change-reverse 0.1s;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: white;
+    color: black;
+    opacity: 0;
+}
+
+.Bottom > .Recipe-Cards > .Card > .Hover-Cover > p:nth-child(1) {
+    font-size: 25px;
+    font-weight: bolder;
+    font-family: "Arsenal SC", sans-serif;
+}
+
+.Bottom > .Recipe-Cards > .Card > .Hover-Cover > p:nth-child(2) {
+    font-size: 10px;
+    font-weight: 100;
+}
+
+.Bottom > .Recipe-Cards > .Card.Hover > .Hover-Cover {
+    animation: opacity-change 0.5s forwards;
+}
+
+.Bottom > .Recipe-Cards > .Card > #food-image {
+    animation: opacity-change 0.5s forwards;
+}
+
+.Bottom > .Recipe-Cards > .Card.Hover > #food-image {
+    animation: opacity-change-reverse 0.5s forwards;
+}
+
+/* === RECIPE SECTION === */
+
+.Bottom .Recipe-Section {
+    opacity: 0;
+    height: 0px;
+}
+
+.Bottom .Recipe-Section > section > * {
+    display: none;
+}
+
+.Bottom .Recipe-Section.Active {
+    padding: 50px;
+    width: 100vw;
+    animation: change-height 1s forwards;
+}
+
+.Bottom .Recipe-Section.Active > section > * {
+    display: block;
+}
+
+.Bottom .Recipe-Section.Active > section {
+    display: flex;
+    height: 100%;
+    border: 2px solid var(--brazillian-blue);
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.Bottom .Recipe-Section.Active > section > .Image-Card {
+    width: 30%;
+    overflow: hidden;
+}
+
+.Bottom .Recipe-Section.Active > section > .Image-Card > img {
+    width: 100%;
+    height: 100%;
+}
+
+.Bottom .Recipe-Section > section > .Content-Card {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: white;
+    color: var(--brazillian-blue);
+}
+
+.Bottom .Recipe-Section > section > .Content-Card > div > * {
+    animation: opacity-change 1s ease-in;
+}
+
+.Bottom .Recipe-Section > section > .Content-Card > .Title-Card {
+    font-size: 50px;
+    text-shadow: 2px 2px var(--brazillian-yellow);
+    animation: opacity-change 2s ease-in;
+}
+
+.Bottom .Recipe-Section > section > .Content-Card > .Description-Card {
+    font-size: 15px;
+    font-style: italic;
+    margin-bottom: 50px;
+}
+
+.Bottom .Recipe-Section > section > .Content-Card > .Ingredients-Card {
+    padding: 25px;
+    font-weight: 200;
+}
+
+.Bottom .Recipe-Section > section > .Content-Card > .How-To-Card {
+    padding: 25px;
+    font-weight: 200;
+}
+.Bottom .Recipe-Section {
+    opacity: 0;
+    height: 0;
+    transition: opacity 0.5s ease, height 0.5s ease; /* Suaviza a transição */
+}
+
+.Bottom .Recipe-Section > section > * {
+    display: none;
+}
+
+.Bottom .Recipe-Section.Active {
+    padding: 50px;
+    width: 100vw;
+    animation: change-height 1s forwards;
+    opacity: 1; /* Torna a seção visível */
+}
+
+.Bottom .Recipe-Section.Active > section > * {
+    display: block;
+}
+
+.Bottom .Recipe-Section.Active > section {
+    display: flex;
+    height: 100%;
+    border: 2px solid var(--brazillian-blue);
+    border-radius: 25px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.9); /* Fundo claro com leve transparência */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.Bottom .Recipe-Section.Active > section > .Image-Card {
+    width: 30%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.Bottom .Recipe-Section.Active > section > .Image-Card > img {
+    width: 100%;
+    height: 100%; 
+    border-radius: 15px; /* Bordas arredondadas */
+}
+
+.Bottom .Recipe-Section > section > .Content-Card {
+    width: 70%;
+    height: 100%;
+    padding: 20px; /* Aumenta o espaço interno */
+    font-family: 'Arial', sans-serif;
+    background: white;
+    color: var(--brazillian-blue);
+    border-radius: 15px; /* Bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.Bottom .Recipe-Section > section > .Content-Card > div > * {
+    animation: opacity-change 1s ease-in;
+}
+
+.Bottom .Recipe-Section > section > .Content-Card > .Title-Card {
+    font-size: 2.5em; /* Tamanho maior */
+    text-shadow: 2px 2px var(--brazillian-yellow);
+    margin-bottom: 20px; /* Espaço abaixo do título */
+    font-weight: bold; /* Deixa o título em negrito */
+}
+
+.Bottom .Recipe-Section > section > .Content-Card > .Description-Card {
+    font-size: 1.2em; /* Tamanho maior */
+    font-style: italic;
+    margin-bottom: 30px; /* Espaço abaixo da descrição */
+}
+
+.Bottom .Recipe-Section > section > .Content-Card > .Ingredients-Card,
+.Bottom .Recipe-Section > section > .Content-Card > .How-To-Card {
+    padding: 15px;
+    font-weight: 300; /* Leve, mas legível */
+    background: rgba(240, 240, 240, 0.8); /* Fundo suave */
+    border-radius: 10px; /* Bordas arredondadas */
+    margin-bottom: 20px; /* Espaço abaixo das seções */
+}
