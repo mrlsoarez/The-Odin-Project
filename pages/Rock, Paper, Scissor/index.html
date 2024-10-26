@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissor</title> 
+    <script src = "script.js" defer></script>
     <style>
 
         * {
@@ -121,8 +122,8 @@
 </head>
 <body>
     <div class = "Main">
-        <div class = "Player Space"></div>
-        <div class = "Computer Space"></div>
+        <div class = "Player Space Showcase"></div>
+        <div class = "Computer Space Showcase"></div>
         <div class = "Outcome Space">
             <div class = "Message"></div>
             <div class = "Points">
@@ -140,9 +141,9 @@
     <dialog open class = "Pick Hidden">
         <h1> Pick your play: </h1>
         <div class = "Possible-Plays">
-            <button id = "rock"></button>
-            <button id = "paper"></button>
-            <button id = "scissor"></button>
+            <button class = "play" id = "rock"></button>
+            <button class = "play" id = "paper"></button>
+            <button class = "play" id = "scissor"></button>
         </div>
     </dialog>
     <dialog open class = "Restart Hidden">
