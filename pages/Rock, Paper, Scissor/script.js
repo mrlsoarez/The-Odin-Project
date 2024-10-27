@@ -3,7 +3,7 @@ let computer_points = 0
 
 function DOMInteraction() {
     
-    const play_showcase = document.querySelectorAll(".Showcase")
+    const play_showcase = document.querySelectorAll("#play")
     const point_showcase = document.querySelectorAll("#box")
     const message_showcase = document.querySelector(".Message")
     const pick_buttons = document.querySelectorAll(".play")
@@ -38,11 +38,25 @@ function DOMInteraction() {
             DIV.innerHTML = ""
         }
 
+        function getSymbols(play) {
+            if (play == "rock") {
+                return pick_buttons[0].innerHTML
+            }
+            else if (play == "paper") {
+                return pick_buttons[1].innerHTML 
+            }
+            else {
+                return pick_buttons[2].innerHTML
+            }
+        }
+
         function updatePlays() {
 
             clean(play_show[0])
             clean(play_show[1])
 
+            play1 = getSymbols(play1)
+            play2 = getSymbols(play2)
             play_show[0].innerHTML = play1
             play_show[1].innerHTML = play2
 
