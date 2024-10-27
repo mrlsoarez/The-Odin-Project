@@ -20,6 +20,10 @@
             height: 100vh;
             width: 100vw;
         }
+        
+        .Main.Blur {
+            filter: blur(50px);
+        }
 
         .Main .Space {
             border: 5px solid black;
@@ -121,24 +125,24 @@
     </style>
 </head>
 <body>
-    <div class = "Main">
+    <div class = "Main Blur">
         <div class = "Player Space Showcase"></div>
         <div class = "Computer Space Showcase"></div>
         <div class = "Outcome Space">
             <div class = "Message"></div>
             <div class = "Points">
                 <div class = "P1">
-                    <span id = 'box'></span>
+                    <span id = 'box'>0</span>
                     <span id = 'title'>P1</span>
                 </div>
                 <div class = "P2">
-                    <span id = 'box'></span>
+                    <span id = 'box'>0</span>
                     <span id = 'title'>P2</span>
                 </div>
             </div>
         </div>
     </div>
-    <dialog open class = "Pick Hidden">
+    <dialog open class = "Pick">
         <h1> Pick your play: </h1>
         <div class = "Possible-Plays">
             <button class = "play" id = "rock"></button>
